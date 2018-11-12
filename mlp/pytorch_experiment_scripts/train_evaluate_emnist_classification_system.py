@@ -12,25 +12,7 @@ import matplotlib.pyplot as plt
 
 
 
-def plot_stats_in_graph(total_losses):
-    
-    # Plot the change in the validation and training set error over training.
-    fig_1 = plt.figure(figsize=(8, 4))
-    ax_1 = fig_1.add_subplot(111)
-    for k in total_losses.keys():
-        if "loss" in k:
-            ax_1.plot(np.arange(len(total_losses[k])), total_losses[k], label=k)
-    ax_1.legend(loc=0)
-    ax_1.set_xlabel('Epoch number')
-    
-    
-    fig_2 = plt.figure(figsize=(8, 4))
-    ax_2 = fig_2.add_subplot(111)
-    for k in total_losses.keys():
-        if "acc" in k:
-            ax_2.plot(np.arange(len(total_losses[k])), total_losses[k], label=k)
-    ax_2.legend(loc=0)
-    ax_2.set_xlabel('Epoch number')
+
     
 plt.style.use('ggplot')
 args = get_args()  # get arguments from command line
@@ -58,4 +40,18 @@ conv_experiment = ExperimentBuilder(network_model=custom_conv_net,
                                     train_data=train_data, val_data=val_data,
                                     test_data=test_data)  # build an experiment object
 experiment_metrics, test_metrics = conv_experiment.run_experiment()  # run experiment and return experiment metrics
-plot_stats_in_graph(experiment_metrics)
+fig_1 = plt.figure(figsize=(8, 4))
+ax_1 = fig_1.add_subplot(111)
+for k in total_losses.keys():
+    if "loss" in k:
+       ax_1.plot(np.arange(len(experiment_metrics[k])), experiment_metrics[k], label=k)
+ax_1.legend(loc=0)
+ax_1.set_xlabel('Epoch number')
+
+fig_2 = plt.figure(figsize=(8, 4))
+ax_2 = fig_2.add_subplot(111)
+for k in total_losses.keys():
+    if "acc" in k:
+        ax_2.plot(np.arange(len(experiment_metrics[k])), experiment_metrics[k], label=k)
+ax_2.legend(loc=0)
+ax_2.set_xlabel('Epoch number')

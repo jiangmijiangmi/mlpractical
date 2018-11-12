@@ -9,8 +9,7 @@ import os
 import mlp.data_providers as data_providers
 from copy import deepcopy
 import matplotlib.pyplot as plt
-%matplotlib inline
-plt.style.use('ggplot')
+
 
 
 def plot_stats_in_graph(total_losses):
@@ -32,6 +31,8 @@ def plot_stats_in_graph(total_losses):
             ax_2.plot(np.arange(len(total_losses[k])), total_losses[k], label=k)
     ax_2.legend(loc=0)
     ax_2.set_xlabel('Epoch number')
+    
+plt.style.use('ggplot')
 args = get_args()  # get arguments from command line
 rng = np.random.RandomState(seed=args.seed)  # set the seeds for the experiment
 torch.manual_seed(seed=args.seed) # sets pytorch's seed

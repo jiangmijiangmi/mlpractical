@@ -52,4 +52,4 @@ conv_experiment = ExperimentBuilder(network_model=custom_conv_net,
                                     train_data=train_data, val_data=val_data,
                                     test_data=test_data)  # build an experiment object
 experiment_metrics, test_metrics = conv_experiment.run_experiment()  # run experiment and return experiment metrics
-plot_stats_in_graph(experiment_metirics)
+plot_stats_in_graph(experiment_metrics)

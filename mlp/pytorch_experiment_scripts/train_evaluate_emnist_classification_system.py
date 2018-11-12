@@ -8,6 +8,11 @@ import tqdm
 import os
 import mlp.data_providers as data_providers
 from copy import deepcopy
+import matplotlib.pyplot as plt
+%matplotlib inline
+plt.style.use('ggplot')
+
+
 def plot_stats_in_graph(total_losses):
     
     # Plot the change in the validation and training set error over training.

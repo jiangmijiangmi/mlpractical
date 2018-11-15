@@ -26,6 +26,7 @@ def get_args():
     parser.add_argument('--image_width', nargs="?", type=int, default=28, help='Width of image data')
     parser.add_argument('--dim_reduction_type', nargs="?", type=str, default='strided_convolution',
                         help='One of [strided_convolution, dilated_convolution, max_pooling, avg_pooling]')
+    parser.add_argument('--pooling',nargs="?",type=array,default=1)
     parser.add_argument('--num_layers', nargs="?", type=int, default=4,
                         help='Number of convolutional layers in the network (excluding '
                              'dimensionality reduction layers)')

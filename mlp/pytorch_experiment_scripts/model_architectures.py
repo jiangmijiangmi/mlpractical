@@ -120,40 +120,40 @@ class ConvolutionalNetwork(nn.Module):
 
         out = x
         # torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True)
-        self.layer_dict['conv_{}'.format(i)] = nn.Conv2d(in_channels=out.shape[1],
+        self.layer_dict['conv_{}'.format(0)] = nn.Conv2d(in_channels=out.shape[1],
                                                          # add a conv layer in the module dict
                                                          kernel_size=5
                                                          out_channels=16, padding=1,
                                                          bias=self.use_bias)
 
-        out = self.layer_dict['conv_{}'.format(i)](out)  # use layer on inputs to get an output
+        out = self.layer_dict['conv_{}'.format(0)](out)  # use layer on inputs to get an output
         out = F.relu(out)  # apply relu
         print(out.shape)
         if self.dim_reduction_type == 'max_pooling':
-            self.layer_dict['dim_reduction_max_pool_{}'.format(i)] = nn.MaxPool2d(4, padding=1)
-            out = self.layer_dict['dim_reduction_max_pool_{}'.format(i)](out)
+            self.layer_dict['dim_reduction_max_pool_{}'.format(0)] = nn.MaxPool2d(4, padding=1)
+            out = self.layer_dict['dim_reduction_max_pool_{}'.format(0)](out)
 
         elif self.dim_reduction_type == 'avg_pooling':
-            self.layer_dict['dim_reduction_avg_pool_{}'.format(i)] = nn.AvgPool2d(4, padding=1)
-            out = self.layer_dict['dim_reduction_avg_pool_{}'.format(i)](out)
+            self.layer_dict['dim_reduction_avg_pool_{}'.format(0)] = nn.AvgPool2d(4, padding=1)
+            out = self.layer_dict['dim_reduction_avg_pool_{}'.format(0)](out)
 
         print(out.shape)
-        self.layer_dict['conv_{}'.format(i)] = nn.Conv2d(in_channels=out.shape[1],
+        self.layer_dict['conv_{}'.format(1)] = nn.Conv2d(in_channels=out.shape[1],
                                                          # add a conv layer in the module dict
                                                          kernel_size=6
                                                          out_channels=32, padding=1,
                                                          bias=self.use_bias)
 
-        out = self.layer_dict['conv_{}'.format(i)](out)  # use layer on inputs to get an output
+        out = self.layer_dict['conv_{}'.format(1)](out)  # use layer on inputs to get an output
         out = F.relu(out)  # apply relu
         print(out.shape)
         if self.dim_reduction_type == 'max_pooling':
-            self.layer_dict['dim_reduction_max_pool_{}'.format(i)] = nn.MaxPool2d(3, padding=1)
-            out = self.layer_dict['dim_reduction_max_pool_{}'.format(i)](out)
+            self.layer_dict['dim_reduction_max_pool_{}'.format(1)] = nn.MaxPool2d(3, padding=1)
+            out = self.layer_dict['dim_reduction_max_pool_{}'.format(1)](out)
 
         elif self.dim_reduction_type == 'avg_pooling':
-            self.layer_dict['dim_reduction_avg_pool_{}'.format(i)] = nn.AvgPool2d(3, padding=1)
-            out = self.layer_dict['dim_reduction_avg_pool_{}'.format(i)](out)
+            self.layer_dict['dim_reduction_avg_pool_{}'.format(1)] = nn.AvgPool2d(3, padding=1)
+            out = self.layer_dict['dim_reduction_avg_pool_{}'.format(1)](out)
 
         print(out.shape)
           

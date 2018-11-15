@@ -102,6 +102,8 @@ class ConvolutionalNetwork(nn.Module):
         self.num_output_classes = num_output_classes
         self.use_bias = use_bias
         self.num_layers = num_layers
+        self.pooling=pooling
+        self.kernel_size=kernel_size
         self.dim_reduction_type = dim_reduction_type
         # initialize a module dict, which is effectively a dictionary that can collect layers and integrate them into pytorch
         self.layer_dict = nn.ModuleDict()
@@ -120,8 +122,8 @@ class ConvolutionalNetwork(nn.Module):
         for i in range(self.num_layers):  # for number of layers times
             self.layer_dict['conv_{}'.format(i)] = nn.Conv2d(in_channels=out.shape[1],
                                                              # add a conv layer in the module dict
-                                                             kernel_size=3,
-                                                             out_channels=self.num_filters, padding=1,
+                                                             kernel_size=self.kernel_size[i],
+                                                             out_channels=self.num_filters[i], padding=1,
                                                              bias=self.use_bias)
 
             out = self.layer_dict['conv_{}'.format(i)](out)  # use layer on inputs to get an output

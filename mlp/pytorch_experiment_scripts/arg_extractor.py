@@ -30,6 +30,7 @@ def get_args():
     parser.add_argument('--num_layers', nargs="?", type=int, default=4,
                         help='Number of convolutional layers in the network (excluding '
                              'dimensionality reduction layers)')
+    parser.add_argument('--kernel_size', nargs="?",type=arrar,default=2)
     parser.add_argument('--num_filters', nargs="?", type=int, default=64,
                         help='Number of convolutional filters per convolutional layer in the network (excluding '
                              'dimensionality reduction layers)')

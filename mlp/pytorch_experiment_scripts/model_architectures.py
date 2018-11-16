@@ -152,11 +152,11 @@ class ConvolutionalNetwork(nn.Module):
                 out = F.relu(out)  # apply relu on output
 
             elif self.dim_reduction_type == 'max_pooling':
-                self.layer_dict['dim_reduction_max_pool_{}'.format(i)] = nn.MaxPool2d(2, padding=1)
+                self.layer_dict['dim_reduction_max_pool_{}'.format(i)] = nn.MaxPool2d(self.pooling[i],stride=self.pooling[i], padding=1)
                 out = self.layer_dict['dim_reduction_max_pool_{}'.format(i)](out)
 
             elif self.dim_reduction_type == 'avg_pooling':
-                self.layer_dict['dim_reduction_avg_pool_{}'.format(i)] = nn.AvgPool2d(2, padding=1)
+                self.layer_dict['dim_reduction_avg_pool_{}'.format(i)] = nn.AvgPool2d(self.pooling[i],stride=self.pooling[i], padding=1)
                 out = self.layer_dict['dim_reduction_avg_pool_{}'.format(i)](out)
 
             print(out.shape)

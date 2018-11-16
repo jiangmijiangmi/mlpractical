@@ -145,14 +145,14 @@ class ConvolutionalNetwork(nn.Module):
                                                                                        kernel_size=3,
                                                                                        out_channels=out.shape[1],
                                                                                        padding=1,
-                                                                                       bias=self.use_bias, stride=1,
-                                                                                       dilation=i + 2)
+                                                                                       bias=self.use_bias, stride=3,
+                                                                                       dilation=2)
                 out = self.layer_dict['dim_reduction_dilated_conv_{}'.format(i)](
                     out)  # run dilated conv on input to get output
                 out = F.relu(out)  # apply relu on output
 
             elif self.dim_reduction_type == 'max_pooling':
-                self.layer_dict['dim_reduction_max_pool_{}'.format(i)] = nn.MaxPool2d(self.pooling[i],stride=self.pooling[i], padding=1)
+                self.layer_dict['dim_reduction_max_pool_{}'.format(i)] = nn.MaxPool2d(7,stride=3, padding=1)
                 out = self.layer_dict['dim_reduction_max_pool_{}'.format(i)](out)
 
             elif self.dim_reduction_type == 'avg_pooling':

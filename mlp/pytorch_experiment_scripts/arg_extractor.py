@@ -29,9 +29,9 @@ def get_args():
     parser.add_argument('--num_layers', nargs="?", type=int, default=2,
                         help='Number of convolutional layers in the network (excluding '
                              'dimensionality reduction layers)')
-    parser.add_argument('--kernel_size',nargs="?",type=array,default=[5,6])
-    parser.add_argument('--pooling',nargs="?",type=array,default=[4,3])
-    parser.add_argument('--num_filters', nargs="?",type=array default=[64],
+    parser.add_argument('--kernel_size',nargs="?",type=list,default=[5,6])
+    parser.add_argument('--pooling',nargs="?",type=list,default=[4,3])
+    parser.add_argument('--num_filters', nargs="?",type=list, default=[16,32],
                         help='Number of convolutional filters per convolutional layer in the network (excluding '
                              'dimensionality reduction layers)')
     parser.add_argument('--num_epochs', nargs="?", type=int, default=100, help='The experiment\'s epoch budget')
